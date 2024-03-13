@@ -14,10 +14,10 @@ pipelines:
     stages:
     - install:
         fetch_materials: true
+        approval:
+            type: manual
         jobs:
-          apply:
-            approval:
-              type: manual
+          install:
             timeout: 0
             tasks:
             - exec:
@@ -25,15 +25,15 @@ pipelines:
                 arguments: [ "helm.sh", "install" ]
     - uninstall:
         fetch_materials: true
+        approval:
+            type: manual
         jobs:
-          apply:
-            approval:
-              type: manual
+          uninstall:
             timeout: 0
             tasks:
             - exec:
                 command: bash
-                arguments: [ "helm.sh", "delete" ]
+                arguments: [ "helm.sh", "uninstall" ]
 
 
 
