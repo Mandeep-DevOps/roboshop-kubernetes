@@ -7,8 +7,8 @@ if [ "$1" == "install" ]; then
 
   helm upgrade -i ngx-ingres ingress-nginx/ingress-nginx
   kubectl apply -f external-dns.yml
-  helm install filebeat elastic/filebeat -f filebeat.yml
-  helm install prometheus prometheus-community/kube-prometheus-stack -f prometheus.yml
+  helm upgrade -i filebeat elastic/filebeat -f filebeat.yml
+  helm upgrade -i prometheus prometheus-community/kube-prometheus-stack -f prometheus.yml
 fi
 
 if [ "$1" == "uninstall" ]; then
