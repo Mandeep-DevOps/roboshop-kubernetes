@@ -1,3 +1,4 @@
+aws eks update-kubeconfig --name dev-eks
 if [ "$1" == "install" ]; then
   helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
   helm repo add elastic https://helm.elastic.co
