@@ -24,3 +24,6 @@ if [ "$1" == "uninstall" ]; then
   helm uninstall prometheus
   helm uninstall node-autoscaler
 fi
+
+# Argocd Password
+# kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
