@@ -2,4 +2,5 @@ argocd login argocd.rdevopsb73.online --username admin --password $(kubectl -n a
 
 for i in cart catalogue user payment shipping frontend ; do
   argocd app create $i --repo https://github.com/raghudevopsb77/$i --path k8s --dest-namespace default --dest-server https://kubernetes.default.svc --directory-recurse --sync-policy none --grpc-web
+  argocd app sync $i
 done
