@@ -12,9 +12,12 @@ if [ "$1" == "install" ]; then
   helm upgrade -i prometheus prometheus-community/kube-prometheus-stack -f prometheus.yml
   helm upgrade -i node-autoscaler autoscaler/cluster-autoscaler --set 'autoDiscovery.clusterName'=dev-eks
   kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+  kubectl create ns argocd
+  kubectl apply -f argocd.yml -n argocd
 fi
 
 if [ "$1" == "uninstall" ]; then
+  kubectl delete ns argocd
   helm uninstall ngx-ingres
   kubectl delete -f external-dns.yml
   helm uninstall filebeat
