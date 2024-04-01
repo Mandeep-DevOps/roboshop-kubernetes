@@ -1,0 +1,4 @@
+rbac:
+  serviceAccount:
+    annotations:
+      eks.amazonaws.com/role-arn: arn:aws:iam::739561048503:role/dev-roboshop-eks-pod-role-for-cluster-autoscaler
