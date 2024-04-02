@@ -1,4 +1,4 @@
-aws eks update-kubeconfig --name dev-eks
+aws eks update-kubeconfig --name prod-eks
 if [ "$1" == "install" ]; then
   helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
   helm repo add elastic https://helm.elastic.co
@@ -9,11 +9,11 @@ if [ "$1" == "install" ]; then
   helm upgrade -i ngx-ingres ingress-nginx/ingress-nginx -f ingress.yaml
   kubectl apply -f external-dns.yml
   helm upgrade -i filebeat elastic/filebeat -f filebeat.yml
-  helm upgrade -i prometheus prometheus-community/kube-prometheus-stack -f prometheus.yml
+  helm upgrade -i prometheus prometheus-community/kube-prometheus-stack -f prometheus-prod.yml
   helm upgrade -i node-autoscaler autoscaler/cluster-autoscaler --set 'autoDiscovery.clusterName'=dev-eks -f cluster-autoscaler.yml
   kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
   kubectl create ns argocd
-  kubectl apply -f argocd.yml -n argocd
+  kubectl apply -f argocd-prod.yml -n argocd
 fi
 
 if [ "$1" == "uninstall" ]; then
