@@ -1,12 +1,12 @@
 aws eks update-kubeconfig --name dev-eks
 if [ "$1" == "install" ]; then
   helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
-  helm repo add elastic x
+  helm repo add elastic https://helm.elastic.co
   helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
   helm repo add autoscaler https://kubernetes.github.io/autoscaler
   helm repo update
 
-  helm upgrade -i ngx-ingres ingress-nginx/ingress-nginx
+  helm upgrade -i ngx-ingres ingress-nginx/ingress-nginx -f ingress.yaml
   kubectl apply -f external-dns.yml
   helm upgrade -i filebeat elastic/filebeat -f filebeat.yml
   helm upgrade -i prometheus prometheus-community/kube-prometheus-stack -f prometheus.yml
