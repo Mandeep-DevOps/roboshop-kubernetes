@@ -7,7 +7,7 @@ if [ "$1" == "install" ]; then
   helm repo update
 
   helm upgrade -i ngx-ingres ingress-nginx/ingress-nginx -f ingress.yaml
-  kubectl apply -f external-dns.yml
+  kubectl apply -f external-dns-prod.yml
   helm upgrade -i filebeat elastic/filebeat -f filebeat.yml
   helm upgrade -i prometheus prometheus-community/kube-prometheus-stack -f prometheus-prod.yml
   helm upgrade -i node-autoscaler autoscaler/cluster-autoscaler --set 'autoDiscovery.clusterName'=dev-eks -f cluster-autoscaler.yml
