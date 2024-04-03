@@ -10,7 +10,7 @@ if [ "$1" == "install" ]; then
   kubectl apply -f external-dns-dev.yml
   helm upgrade -i filebeat elastic/filebeat -f filebeat.yml
   helm upgrade -i prometheus prometheus-community/kube-prometheus-stack -f prometheus-dev.yml
-  helm upgrade -i node-autoscaler autoscaler/cluster-autoscaler --set 'autoDiscovery.clusterName'=dev-eks -f cluster-autoscaler.yml
+  helm upgrade -i node-autoscaler autoscaler/cluster-autoscaler --set 'autoDiscovery.clusterName'=dev-eks -f cluster-autoscaler-dev.yml
   kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
   kubectl create ns argocd
   kubectl apply -f argocd-dev.yml -n argocd
