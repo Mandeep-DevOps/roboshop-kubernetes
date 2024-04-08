@@ -23,9 +23,9 @@ pipelines:
             - exec:
                 command: bash
                 arguments: [ "helm-dev.sh", "install" ]
-            - exec:
-                command: bash
-                arguments: [ "helm-prod.sh", "install" ]
+#             - exec:
+#                 command: bash
+#                 arguments: [ "helm-prod.sh", "install" ]
     - uninstall:
         fetch_materials: true
         approval:
